@@ -17,7 +17,7 @@ else
 fi
 
 if [ -z "$3" ]; then
-	LABEL=ppi.mat
+	LABEL=Homo_sapiens.mat
 else
 	LABEL=$3
 fi
