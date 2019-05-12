@@ -31,6 +31,15 @@ For weighted networks, each edge should appear twice `a b w` and `b a w`.
 
 You may want to use `example/mat2edge.py` to translate mat to edgelist.
 
+`.mat` files can be downloaded here:
+
+* BlogCatalog [Source](http://socialcomputing.asu.edu/datasets/BlogCatalog3) [Preprocessed](http://leitang.net/code/social-dimension/data/blogcatalog.mat)
+* Protein-Protein Interaction [Source](http://thebiogrid.org/download.php) [Preprocessed](http://snap.stanford.edu/node2vec/Homo_sapiens.mat)
+* [Flickr](http://leitang.net/code/social-dimension/data/flickr.mat)
+* [YouTube](http://leitang.net/code/social-dimension/data/youtube.mat)
+
+
+
 ### Run NetSMF
 
 For unweighted networks, see `example/blog.sh` for an example.
