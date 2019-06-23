@@ -56,7 +56,11 @@ void GraphWalker::transformation() {
     } else {
         LOG4CXX_INFO(logger, "using truncated logarithm...");
     }
-    auto mylog = FLAGS_log1p ? [&](double x) -> double {return log1p(x);} : [&](double x) -> double {return log(x);};
+
+    std::function<double (double)> log1p_func = log1p;
+    std::function<double (double)> log_func = log;
+	auto mylog = FLAGS_log1p ? log1p_func : log_func;
+
     for (auto iter = counter_merged->cbegin(); iter != counter_merged->cend(); ++iter) {
         src = iter->first.first;
         dst = iter->first.second;
