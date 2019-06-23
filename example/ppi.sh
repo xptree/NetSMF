@@ -38,5 +38,5 @@ fi
     -log4cxx log4cxx.config) |& tee -a ppi.log
 
 python redsvd2emb.py --name $OUTPUT --dim 128
-python predict.py --label $LABEL --embedding ${OUTPUT}_128.npy --seed 0 --C 1 --start-train-ratio 10 --stop-train-ratio 90 --num-train-ratio 10
-python predict.py --label $LABEL --embedding ${OUTPUT}_128.npy --seed 0 --C 10 --start-train-ratio 10 --stop-train-ratio 90 --num-train-ratio 10
+python predict.py --label $LABEL --embedding ${OUTPUT}_128.npy --seed 0 --C 1 --start-train-ratio 10 --stop-train-ratio 90 --num-train-ratio 9
+python predict.py --label $LABEL --embedding ${OUTPUT}_128.npy --seed 0 --C 10 --start-train-ratio 10 --stop-train-ratio 90 --num-train-ratio 9
