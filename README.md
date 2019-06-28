@@ -1,6 +1,19 @@
 # NetSMF
 
-NetSMF: Large-Scale Network Embedding as Sparse Matrix Factorization
+NetSMF: Large-Scale Network Embedding as Sparse Matrix Factorization [[arxiv](https://arxiv.org/abs/1906.11156)]
+
+Please cite our paper if you use this code in your own work:
+
+```
+@inproceedings{qiu2019netsmf,
+ author = {Qiu, Jiezhong and Dong, Yuxiao and Ma, Hao and Li, Jian and Wang, Chi and Wang, Kuansan and Tang, Jie},
+ title = {NetSMF: Large-Scale Network Embedding As Sparse Matrix Factorization},
+ booktitle = {The World Wide Web Conference},
+ series = {WWW '19},
+ year = {2019},
+ publisher = {ACM}
+} 
+```
 
 # HOWTO
 
