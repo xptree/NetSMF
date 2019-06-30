@@ -19,12 +19,11 @@ Please cite our paper if you use this code in your own work:
 
 ## How to install
 ```
-g++ version 5.4.0
-sudo apt-get install cmake (3.5.1-1)
-sudo apt-get install libgflags-dev (2.1.2-3)
-sudo apt-get install liblog4cxx-dev (0.10.0-10)
-sudo apt-get install libomp-dev (3.7.0-3)
-sudo apt-get install libeigen3-dev (3.3~beta1-2)
+sudo apt-get install cmake
+sudo apt-get install libgflags-dev
+sudo apt-get install liblog4cxx-dev
+sudo apt-get install libomp-dev
+sudo apt-get install libeigen3-dev
 https://github.com/xptree/NetSMF.git
 cd NetSMF
 mkdir build
@@ -32,6 +31,17 @@ mkdir build
 cd build
 make
 ```
+
+The dependence versions that the code is tested:
+
+| Dependence 	| Version     	|
+|------------	|-------------	|
+| g++        	| 5.4.0       	|
+| cmake      	| 3.5.1-1     	|
+| gflags     	| 2.1.2-3     	|
+| log4cxx    	| 0.10.0-10   	|
+| openmp     	| 3.7.0-3     	|
+| eigen3     	| 3.3~beta1-2 	|
 
 ## How to run
 
