@@ -20,7 +20,7 @@ Please cite our paper if you use this code in your own work:
 ## How to install
 ```
 g++ version 5.4.0
-sudo apt-get install cmake ((3.5.1-1)
+sudo apt-get install cmake (3.5.1-1)
 sudo apt-get install libgflags-dev (2.1.2-3)
 sudo apt-get install liblog4cxx-dev (0.10.0-10)
 sudo apt-get install libomp-dev (3.7.0-3)
