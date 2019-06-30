@@ -32,6 +32,17 @@ cd build
 make
 ```
 
+The dependence versions that the code is tested:
+
+| Dependence 	| Version     	|
+|------------	|-------------	|
+| g++        	| 5.4.0       	|
+| cmake      	| 3.5.1-1     	|
+| gflags     	| 2.1.2-3     	|
+| log4cxx    	| 0.10.0-10   	|
+| openmp     	| 3.7.0-3     	|
+| eigen3     	| 3.3~beta1-2 	|
+
 ## How to run
 
 ### Input
