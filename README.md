@@ -43,6 +43,8 @@ The dependence versions that the code is tested:
 | openmp     	| 3.7.0-3     	|
 | eigen3     	| 3.3~beta1-2 	|
 
+**Note: Using eigen3 3.2.5 may cause problems. Please do update you eigen3 to 3.3 or above.**
+
 ## How to run
 
 ### Input
