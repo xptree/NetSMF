@@ -1,10 +1,10 @@
-/* 
+/*
  *  Copyright (c) 2010 Daisuke Okanohara
- * 
+ *
  *   Redistribution and use in source and binary forms, with or without
  *   modification, are permitted provided that the following conditions
  *   are met:
- * 
+ *
  *   1. Redistributions of source code must retain the above Copyright
  *      notice, this list of conditions and the following disclaimer.
  *
@@ -19,11 +19,14 @@
 
 #include <iostream>
 #include <sys/time.h>
+#include <cmath>
 
 #include "util.hpp"
+#include "log4cxx/logger.h"
 
 using namespace std;
 using namespace Eigen;
+using namespace log4cxx;
 
 namespace REDSVD {
 
@@ -43,6 +46,26 @@ void Util::sampleTwoGaussian(float& f1, float& f2){
   f2 = len * sin(2.f * M_PI * v2);
 }
 
+void Util::sampleSparseProjMat(MatrixXf& mat, const int density_multiplier) {
+  LoggerPtr logger(Logger::getLogger("redsvd"));
+  LOG4CXX_INFO(logger, "going to sample a sparse random matrix of shape " << mat.rows() << " x " << mat.cols());
+  double sqrt_N = sqrt(mat.rows());
+  LOG4CXX_INFO(logger, "each row is going to have " << (double)mat.cols() * density_multiplier / sqrt_N << " non-zeros.");
+  double v;
+  for (int i = 0; i < mat.rows(); ++i){
+    for (int j = 0; j < mat.cols(); j ++){
+      v = sqrt_N * rand() * 2 / RAND_MAX;
+      if (v <= density_multiplier) {
+        mat(i, j)  = 1;
+      } else if (v <= 2.0 * density_multiplier) {
+        mat(i, j) = -1;
+      } else {
+        mat(i, j) = 0;
+      }
+    }
+  }
+}
+
 void Util::sampleGaussianMat(MatrixXf& mat){
   for (int i = 0; i < mat.rows(); ++i){
     int j = 0;
@@ -58,7 +81,8 @@ void Util::sampleGaussianMat(MatrixXf& mat){
       mat(i, j)  = f1;
     }
   }
-} 
+}
+
 
 
 void Util::processGramSchmidt(MatrixXf& mat){
@@ -71,7 +95,7 @@ void Util::processGramSchmidt(MatrixXf& mat){
     if (norm < SVD_EPS){
       for (int k = i; k < mat.cols(); ++k){
 	mat.col(k).setZero();
-      } 
+      }
       return;
     }
     mat.col(i) *= (1.f / norm);

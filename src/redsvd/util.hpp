@@ -37,6 +37,7 @@ class Util{
 public:
   static void convertFV2Mat(const std::vector<fv_t>& fvs, SMatrixXf& A);
   static void sampleGaussianMat(Eigen::MatrixXf& x);
+  static void sampleSparseProjMat(Eigen::MatrixXf& x, const int density_multiplier);
   static void processGramSchmidt(Eigen::MatrixXf& mat);
   static double getSec();
 

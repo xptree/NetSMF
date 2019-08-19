@@ -31,6 +31,10 @@ DEFINE_bool(weight, false, "Weighted graph");
 DEFINE_bool(log1p, false, "Using log1p instead of truncated logarithm");
 DEFINE_string(log4cxx, "log4cxx.config", "Log4cxx config file");
 
+// For sparse random projection
+DEFINE_bool(sparse_proj, false, "Whether to use gaussian random projection matrix of sparse random projection matrix.");
+DEFINE_int32(density_multiplier, 1, "A multipiler to control the number of nnz in the random projection matrix, only works when sparse_proj is set to true");
+
 int main(int argc, char** argv) {
     gflags::ParseCommandLineFlags(&argc, &argv, true);
     //BasicConfigurator::configure();

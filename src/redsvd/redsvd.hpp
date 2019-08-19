@@ -26,6 +26,9 @@
 #include <eigen3/Eigen/Sparse>
 #include <eigen3/Eigen/Dense>
 #include <eigen3/Eigen/Eigenvalues>
+#include <gflags/gflags.h>
+DECLARE_bool(sparse_proj);
+DECLARE_int32(density_multiplier);
 #include "util.hpp"
 #include "log4cxx/logger.h"
 
@@ -57,9 +60,15 @@ public:
 
     // Gaussian Random Matrix for A^T
     Eigen::MatrixXf O(A.rows(), r);
-    Util::sampleGaussianMat(O);
 
-    LOG4CXX_INFO(logger, "sampling gaussian random matrix O for A^T done.");
+    if (FLAGS_sparse_proj) {
+        LOG4CXX_INFO(logger, "sampling sparse random projection matrix O for A^T ...");
+        Util::sampleSparseProjMat(O, FLAGS_density_multiplier);
+    } else {
+        LOG4CXX_INFO(logger, "sampling gaussian random matrix O for A^T ...");
+        Util::sampleGaussianMat(O);
+    }
+    LOG4CXX_INFO(logger, "sampling random matrix O done.");
 
     // Compute Sample Matrix of A^T
     // Eigen::MatrixXf Y = A.transpose() * O;
@@ -76,8 +85,14 @@ public:
 
     // Gaussian Random Matrix
     Eigen::MatrixXf P(B.cols(), r);
-    Util::sampleGaussianMat(P);
-    LOG4CXX_INFO(logger, "sample another gaussian random matrix P done.");
+    if (FLAGS_sparse_proj) {
+        LOG4CXX_INFO(logger, "sampling another sparse random projection matrix P ...");
+        Util::sampleSparseProjMat(P, FLAGS_density_multiplier);
+    } else {
+        LOG4CXX_INFO(logger, "sampling another gaussian random projection matrix P ...");
+        Util::sampleGaussianMat(P);
+    }
+    LOG4CXX_INFO(logger, "sampling random matrix P done.");
 
     // Compute Sample Matrix of B
     Eigen::MatrixXf Z = B * P;
