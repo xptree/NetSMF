@@ -87,7 +87,7 @@ public:
     Eigen::MatrixXf P(B.cols(), r);
     if (FLAGS_sparse_proj) {
         LOG4CXX_INFO(logger, "sampling another sparse random projection matrix P ...");
-        Util::sampleSparseProjMat(P, FLAGS_density_multiplier);
+        Util::sampleSparseProjMat(P, 1);
     } else {
         LOG4CXX_INFO(logger, "sampling another gaussian random projection matrix P ...");
         Util::sampleGaussianMat(P);
