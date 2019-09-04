@@ -1,6 +1,7 @@
 #include "GraphWalker.h"
 #include <numeric> // std::partial_sum
 #include <omp.h>
+#include <string>
 
 // include gflags
 #include <gflags/gflags.h>
@@ -126,6 +127,34 @@ void GraphWalker::redsvd() {
     delete sparsifier_upper;
     delete sparsifier_lower;
 
+
+    // dump it
+    A.makeCompressed();
+    int n = A.rows();
+    Eigen::Index nnz = A.nonZeros();
+    LOG4CXX_INFO(logger, "dumping the matrix to be factorized, row=" << A.rows() << " col=" << A.cols()  << " #nnz=" << nnz);
+    long int* indices = A.innerIndexPtr();  // Pointer to the indices.
+    long int* indptr = A.outerIndexPtr(); // Pointer to the beginning of each inner vector
+    float* value = A.valuePtr();
+    std::string valuefile = FLAGS_output_svd + "_value.txt";
+    FILE* fvalue = fopen(valuefile.c_str(), "w");
+    for (Eigen::Index i=0; i<nnz; ++i) {
+        fprintf(fvalue, "%f\n", *(value+i));
+    }
+    fclose(fvalue);
+    std::string indicesfile = FLAGS_output_svd + "_indices.txt";
+    FILE* findices = fopen(indicesfile.c_str(), "w");
+    for (Eigen::Index i=0; i<nnz; ++i) {
+        fprintf(findices, "%ld\n", *(indices+i));
+    }
+    fclose(findices);
+    std::string indptrfile = FLAGS_output_svd + "_indptr.txt";
+    FILE* findptr = fopen(indptrfile.c_str(), "w");
+    for (int i=0; i<=n; ++i) {
+        fprintf(findptr, "%ld\n", *(indptr+i));
+    }
+    fclose(findptr);
+    LOG4CXX_INFO(logger, "dumped to " << valuefile << ", " << indicesfile << ", and " << indptrfile);
     LOG4CXX_INFO(logger, "running randomized SVD...");
     const double start = REDSVD::Util::getSec();
     REDSVD::RedSVD svdOfA(A, FLAGS_rank < degree.size() ? FLAGS_rank : degree.size());
