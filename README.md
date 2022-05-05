@@ -24,7 +24,7 @@ sudo apt-get install libgflags-dev
 sudo apt-get install liblog4cxx-dev
 sudo apt-get install libomp-dev
 sudo apt-get install libeigen3-dev
-https://github.com/xptree/NetSMF.git
+git clone https://github.com/xptree/NetSMF.git
 cd NetSMF
 mkdir build
 ./configure
@@ -72,7 +72,7 @@ For unweighted networks, see `example/blog.sh` for an example.
 
 `blog.sh` takes three arguments, the first one indicates the input edgelist file, the second one indicates the output file, the third one indicating the origin `.mat` file containing network and labels.
 
-For exmaple, runing `./blog.sh blogcatalog.edgelist blogcatalog.netsmf blogcatalog.mat` will
+For exmaple, running `./blog.sh blogcatalog.edgelist blogcatalog.netsmf blogcatalog.mat` will
 
 * check if `blogcatalog.edgelist` is a valid file. If not, it calls `mat2edge.py` to translate mat file `blogcatalog.mat` to edgelist `blogcatalog.edgelist`.
 * call NetSMF algorithm, and store the 128-dim embedding at `blogcatalog.netsmf_128.npy`.
