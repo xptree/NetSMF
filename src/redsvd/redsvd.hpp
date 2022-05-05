@@ -81,7 +81,7 @@ public:
 
     // Compute Sample Matrix of B
     Eigen::MatrixXf Z = B * P;
-    LOG4CXX_INFO(logger, "compute sample matrix of Z = B * P done.")
+    LOG4CXX_INFO(logger, "compute sample matrix of Z = B * P done.");
 
     // Orthonormalize Z
     Util::processGramSchmidt(Z);
